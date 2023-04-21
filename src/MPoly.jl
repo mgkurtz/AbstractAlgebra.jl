@@ -414,9 +414,9 @@ function degrees(f::AbstractAlgebra.MPolyRingElem{T}) where T <: RingElement
    end
 end
 
-one(R::MPolyRing) = R(1)
+one(R::MPolyRing) = R(one(base_ring(R)))
 
-zero(R::MPolyRing) = R(0)
+zero(R::MPolyRing) = R(zero(base_ring(R)))
 
 function isone(x::AbstractAlgebra.MPolyRingElem{T}) where T <: RingElement
    return length(x) == 1 && iszero(first(exponent_vectors(x))) &&
