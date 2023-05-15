@@ -469,7 +469,7 @@ function expressify(@nospecialize(a::Union{PolynomialElem, NCPolyRingElem}),
    for k in degree(a):-1:0
       c = coeff(a, k)
       if !iszero(c)
-         xk = k < 1 ? 1 : k == 1 ? x : Expr(:call, :^, x, k)
+         xk = k < 1 ? expressify(one(base_ring(a)); context) : k == 1 ? x : Expr(:call, :^, x, k)
          if isone(c)
             push!(sum.args, Expr(:call, :*, xk))
          else
